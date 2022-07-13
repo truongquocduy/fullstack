@@ -1,0 +1,16 @@
+<div class="row justify-content-center ps-4 pe-4 pb-5" style="margin-top: 80px;">
+    <div class="col-lg-9 p-5">
+        <form>
+            <div class="mb-3">
+                <input type="text" class="form-control p-4" [(ngModel)]="title" placeholder="Tiêu đề" name="title" style="font-size: 30px;">
+            </div>
+            <ckeditor [editor]="Editor" [(ngModel)]="content" name="content"></ckeditor>
+        </form>
+    </div>
+    <div class="col-lg-3 text-center pt-5 ps-2 pe-2" >
+        <div class="mb-3">
+            <input type="text" class="form-control p-4"  placeholder="Tác giả" name="author" >
+        </div>
+        <button class="btn btn-danger w-75 pt-3 pb-3 mt-4" (click)="newBlog()"><a class="text-light">ĐĂNG BÀI</a></button>
+    </div>
+</div>

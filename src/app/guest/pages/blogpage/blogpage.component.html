@@ -1,0 +1,52 @@
+<div class="col-lg-10 " style="position: relative;left: 140px;">
+    <div class="row">
+        <div class="col-lg-8 me-5 pe-5 pb-5" style="border-right: 1px solid #ece5e5;">
+            <div class="row">
+                <div class="col-lg-12 ps-4 mt-4">
+                    <h6 class="pb-3" style="border-bottom: 1px solid #dce0e3;"><b>PHÙ HỢP VỚI BẠN</b></h6>
+                </div>
+                <div class="col-lg-12 mt-2 ms-2" style="color: #888484;">
+                    Cho dù bạn là người mới bắt đầu hay một lập trình viên đã có kinh nghiệm đang tìm kiếm
+                    các khóa học để nâng cao kỹ năng bản thân và đạt đến mức độ cao hơn trong lập trình, lộ
+                    trình học tập này sẽ giúp bạn đạt được mục tiêu của mình.
+                </div>
+            </div>
+            <div class="row mt-3 ms-2 justify-content">
+                <a *ngFor="let item of listBlog;let index = index" [routerLink]="''+(item.id)" style="text-decoration: none;color: #333;">
+                    <div class="col-lg-12 ps-3 pe-3 pt-2 pb-3" style="border-top: 1px solid #ece5e5;border-radius: 10px;">
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkhYWNce9bE6S5rhq9eEhNgjukGmEEzjpOgA&usqp=CAU"
+                                height="20px" alt="">
+                                <font class="ms-2" style="font-weight: 600;font-size: 14px;">Trương Quốc Duy</font>
+                            </div>
+                            <div class="col-lg-2 ps-5">
+                                <i class="far fa-bookmark me-3"></i>
+                                <i class="fas fa-ellipsis-h"></i>
+                            </div>
+                            <div class="col-lg-8 mt-2">
+                                <h2 class="khoahoc-title" style="font-size: 22px;">{{item.tieude}}</h2>
+                                <p style="color: #888484;">
+                                   {{item.noidungngan}}
+                                </p>
+                                <p style="color: #524d4d;font-size: 14px;">12 ngày trước / 6 phút đọc</p>
+                            </div>
+                            <div class="col-lg-4 mt-2">
+                                <img [src]="'assets/img/'+ item.hinhanh" class="w-100" alt="" style="border-radius: 10px;">
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+        </div>
+        <div class="col-lg-3 pt-4" style="position: fixed;right: 100px;">
+            <h6 style="font-weight: 700;color: #848688;">CÁC CHỦ ĐỀ ĐƯỢC ĐỀ XUẤT</h6>
+            <button class="btn text-dark mt-2 ml-2" style="background-color: #f2f2f2;border-radius: 30px;">Front-end / Mobile App</button>
+            <button class="btn text-dark mt-2 ml-2" style="background-color: #f2f2f2;border-radius: 30px;">Back-end / Devops</button>
+            <button class="btn text-dark mt-2 ml-2" style="background-color: #f2f2f2;border-radius: 30px;">UI / UX / Design</button>
+            <button class="btn text-dark mt-2 ml-2" style="background-color: #f2f2f2;border-radius: 30px;">Other</button>
+        </div>
+    </div>
+</div>

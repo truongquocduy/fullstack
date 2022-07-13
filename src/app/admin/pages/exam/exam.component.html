@@ -1,0 +1,30 @@
+<div class="row justify-content-center ps-4 pe-4 pb-5" style="margin-top: 80px;">
+    <div *ngIf="loader" id="loader-progress" style="position: fixed;left: 0;top: 40%;z-index: 10;">
+        <div class="loader mx-auto" style="background-image: url(assets/img/logo.jfif);background-size: 100%;"></div>
+    </div>
+    <div class="col-lg-8 p-5 bg-success">
+        <h2 style="font-weight: 800;">
+            Bài thi lần một học kì 1 - Công nghệ thông tin
+        </h2>
+        <h6 style="line-height: 26px;">
+            HTML, CSS từ Zero đến Hero, Xây Dựng Website với ReactJS, JavaScript Cơ Bản, Kiến Thức Nhập Môn, Responsive Với Grid System.
+        </h6>
+    </div>
+    <div class="col-lg-4 bg-success text-center">
+        <button class="btn btn-primary w-75 pt-3 pb-3 mt-5"  (click)="OpenExam(1)"><a class="text-light">BẮT ĐẦU THI</a></button>
+        <button class="btn btn-danger w-75 pt-3 pb-3 mt-4" (click)="OffExam(1)"><a class="text-light">KHÓA BÀI THI</a></button>
+    </div>
+
+    <div class="col-lg-8 p-5 bg-warning mt-4">
+        <h2 style="font-weight: 800;">
+            Bài thi lần hai học kì 1 - Công nghệ thông tin
+        </h2>
+        <h6 style="line-height: 26px;">
+            HTML, CSS từ Zero đến Hero, Xây Dựng Website với ReactJS, JavaScript Cơ Bản, Kiến Thức Nhập Môn, Responsive Với Grid System.
+        </h6>
+    </div>
+    <div class="col-lg-4 bg-warning text-center mt-4">
+        <button class="btn btn-primary w-75 pt-3 pb-3 mt-5"  (click)="OpenExam(2)"><a class="text-light">BẮT ĐẦU THI</a></button>
+        <button class="btn btn-danger w-75 pt-3 pb-3 mt-4" (click)="OffExam(2)"><a class="text-light">KHÓA BÀI THI</a></button>
+    </div>
+</div>

@@ -1,0 +1,299 @@
+<div class="col-lg-10 mt-4 mb-5" style="position: relative;left: 160px;">
+    <div class="row">
+        <div class="col-lg-9 pe-4">
+            <div class="row p-3" style="border-radius: 30px;box-shadow: 0px 2px 7px black;">
+                <div class="col-lg-9">
+                    <h5><strong>Thông tin cá nhân</strong></h5>
+                </div>
+                <div class="col-lg-9">
+                    <strong>Xin chào {{User.name}}</strong>
+                    , MSSV: {{User.id}}, Lớp CD20CT12, Ngành CNTT - Khoa CNTT - Điện Tử, Trường CĐ CNTT
+                    TP.HCM, ... <br>
+                    <button class="btn text-light mt-4 me-2" style="background-color: #f05123;border-radius: 10px;" data-bs-toggle="offcanvas" data-bs-target="#thongtinsv">
+                        Xem thông tin
+                    </button>
+                    <button class="btn text-light mt-4 bg-danger" style="border-radius: 10px;">
+                        <a class=" text-light" style="text-decoration:none;" (click)="logout()">Đăng xuất</a>
+                    </button>
+                </div>
+                <div class="col-lg-3">
+                    <img class="mx-auto d-block" src="assets/img/nam.png" width="60%" alt="">
+                </div>
+            </div>
+            <div class="row mt-5 p-3">
+                <div class="col-lg-12">
+                    <h5><strong>Các khóa đang học </strong></h5>
+                </div>
+                <div class="khungchuakhoahoc row">
+                    <div class="khoahoc col-lg-4 pe-1" *ngFor="let item of listStudying">
+                        <a [routerLink]="'/guest/studying/'+item.makhoahoc" style="text-decoration:none;">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img [src]="'assets/img/'+item.img" class="w-100" alt="" style="border-radius: 16px;">
+                                    <h3 class="mt-4" style="font-size: 18px;font-weight: 600;">{{item.name}}</h3>
+                                    <p class="mt-3" style="font-size: 14px;color: #5a5757;">
+                                        <i class="fas fa-users me-1"></i>
+                                        <span>3010</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+
+            </div>
+            <div class="row p-3 mt-4" style="border-radius: 30px;box-shadow: 0px 2px 7px black;">
+                <div class="col-lg-9">
+                    <h5><strong>THỜI KHÓA BIỂU</strong></h5>
+                </div>
+                <div class="col-lg-12">
+                    <table class="table table-bordered" id="tb">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Tên học phần</th>
+                                <th>Giảng viên</th>
+                                <th>Thứ</th>
+                                <th>Thời gian</th>
+                                <th>Phòng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of listTimeable;let index=index">
+                                <td>{{index+1}}</td>
+                                <td>{{item.tenhocphan}}</td>
+                                <td>{{item.giangvien}}</td>
+                                <td>{{item.thu}}</td>
+                                <td>{{item.thoigian}}</td>
+                                <td>{{item.phong}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="month">      
+                <ul class="mon__ul">
+                    <li class="prev">&#10094;</li>
+                    <li class="next">&#10095;</li>
+                    <li>
+                        ngày<br>
+                        <span style="font-size:18px">năm</span>
+                    </li>
+                </ul>
+            </div>
+            <ul class="weekdays">
+                <li>Mo</li>
+                <li>Tu</li>
+                <li>We</li>
+                <li>Th</li>
+                <li>Fr</li>
+                <li>Sa</li>
+                <li>Su</li>
+            </ul>
+
+            <ul class="days">
+                lịch
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="offcanvas offcanvas-end" id="thongtinsv" style="width:1000px">
+    <div class="offcanvas-header" style="padding-bottom:0">
+      <h2 class="offcanvas-title">Thông tin sinh viên  <button class="btn btn-success" (click)="loadData()"><i class="fa-solid fa-rotate" style="font-size: 24px;"></i></button></h2>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <!-- Nav tabs -->
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" data-bs-toggle="tab" href="#lilich">Sơ yếu lý lịch</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#diemso">Điểm số</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#thi">Thi online</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#chinhsua">Thay đổi</a>
+    </li>
+  </ul>
+  
+  <!-- Tab panes -->
+  <div class="tab-content">
+      <div class="tab-pane container active" id="lilich" style="background-color:#eae8e9;">
+          <div class="row pt-4">
+              <div class="col-lg-3 text-center pl-4">
+                  
+                  <img [src]="'assets/img/nam.png'" width="80%" alt="" style="border: 6px solid #00c0f3;border-radius:100%;">
+                  <h6 class="mt-4 text-left" style="color:#00c0f3;"><strong>VỀ BẢN THÂN</strong></h6> 
+                  <p class="text-left" style="font-size:14px">
+                      Cử nhân công nghệ thông tin, với kinh nghiệm xây dựng phần mềm, website, đa nền tảng, photoshop . . .
+                  </p>  
+                  <h6 class="mt-5 text-left" style="color:#00c0f3;"><strong>THÔNG TIN LIÊN HỆ</strong></h6> 
+                  <ul class="text-left" style="list-style:none;padding:0;font-size:14px">
+                      <li>SỐ ĐIỆN THOẠI</li>
+                      <li>(+84) {{User.phone}}</li> <br>
+                      <li>QUÊ QUÁN</li>
+                      <li>{{User.address}}</li><br>
+                      <li>ĐỊA ĐIỂM  LÀM VIỆC</li>
+                      <li>TP.Hồ Chí Minh</li><br>
+                      <li>EMAIL</li>
+                      <li>{{User.email}}</li>
+                  </ul>       
+              </div>
+          <div class="col-lg-9" style="background-color:white;border-radius:80px 0 0 0;padding:70px 30px 0px 50px">
+              <strong style="font-size:40px">{{User.name}}</strong>
+              <h5>CÔNG NGHỆ THÔNG TIN</h5>
+              <h6 class="mt-4 text-left" style="color:#00c0f3;"><strong>HỌC VẤN</strong></h6> 
+              <hr>
+              <ul class="text-left" style="list-style:none;padding:0;font-size:14px">
+                  <li><strong>Trường cao đẳng CNTT TP.HCM</strong></li>
+                  <li>2020 - 2023</li>
+                  <li>Điểm trung bình: 8.0/10</li><br>
+                  <li>Thành tích học tập nổi bật</li>
+                  <ul>
+                      <li>3 kỳ cuối cùng đạt học lực giỏi</li>
+                      <li>Nhận được học bổng toàn phần của tổ chức Tiếng Anh</li>
+                  </ul>
+              </ul> 
+              <h6 class="mt-4 text-left" style="color:#00c0f3;"><strong>HOẠT ĐỘNG NGOẠI KHÓA</strong></h6> 
+              <hr>
+              <ul class="text-left" style="list-style:none;padding:0;font-size:14px">
+                  <li><strong>CLB nhà lập trình viên tương lai</strong></li>
+                  <li>2020 - hiện tại</li>
+                  <ul>
+                      <li>Danh hiệu sinh viên tích cực</li>
+                      <li>Thường xuyên đảm nhiệm vị trí trưởng nhóm trong các hoạt động của CLB nhà lập trình viên tương lai do nhà Trường tổ chức</li>
+                      <li>Là đối mối liên lạc, kết nối các hội viên và các doanh nghiệp</li>
+                  </ul>
+              </ul> 
+          </div>
+      </div>
+  </div>
+  <div class="tab-pane container fade" id="diemso">
+      <table class="table table-bordered mt-4">
+          <thead>
+              <tr>
+                  <th>STT</th>
+                  <th>Tên học phần</th>
+                  <th>Thi1</th>
+                  <th>Thi2</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let item of listStudying;let index = index">
+                  <td>{{index+1}}</td>
+                  <td>{{item.name}}</td>
+                  <td> {{item.thi1}}</td>
+                  <td> {{item.thi2}}</td>
+              </tr>
+          </tbody>
+      </table>
+      
+  
+  </div>
+  <div class="tab-pane container fade" id="thi">
+      <table class="table table-bordered">
+          <thead>
+              <tr>
+                  <th style="width:10%">STT</th>
+                  <th style="width:70%">Tên học phần</th>
+                  <th style="width:20%"></th>
+              </tr>
+          </thead>
+          <tbody>
+
+              <tr *ngFor="let item of listStudying;let index = index" >
+                  <td *ngIf="item.thi1_trangthai==true">{{index+1}}</td>
+                  <td *ngIf="item.thi1_trangthai==true">{{item.name}}</td>
+                  <td *ngIf="item.thi1_trangthai==true"><button class="btn btn-success mx-auto d-block w-75" data-bs-toggle="modal" data-bs-target="#hello" (click)="clickExamTarget(item.id,item.makhoahoc,item.name,1)">Bắt đầu</button></td>
+              </tr>
+              <tr *ngFor="let item of listStudying;let index = index" >
+                <td *ngIf="item.thi2_trangthai==true">{{index+1}}</td>
+                <td *ngIf="item.thi2_trangthai==true">{{item.name}}</td>
+                <td *ngIf="item.thi2_trangthai==true"><button class="btn btn-success mx-auto d-block w-75" data-bs-toggle="modal" data-bs-target="#hello" (click)="clickExamTarget(item.id,item.makhoahoc,item.name,2)">Bắt đầu</button></td>
+            </tr>
+
+                              <!-- The Modal -->
+              <div class="modal fade" id="hello" data-bs-backdrop="false">
+                  <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+  
+                          <!-- Modal Header -->
+                          <div class="modal-header">
+                              <h4 class="modal-title mx-auto d-block">Bài Thi {{ExamTarget.name}} Lần {{ExamTarget.lanthi}}</h4>
+                          </div>
+  
+                          <!-- Modal body -->
+                          <div class="modal-body">
+                              
+                              <form #frm="ngForm" id="myform" (submit)="Nopbai($event)">
+                                  <label for="cau1">Câu 1: JavaScript có các biến ?</label> <br>
+                                  <input type="radio" name="cau1" id="" value="1"> Number, String, Boolean <br>
+                                  <input type="radio" name="cau1" id="" value="2"> Numbber, Integer, Char <br>
+                                  <input type="radio" name="cau1" id="" value="3"> Number, String, Boolean, Null <br>
+                                  <input type="radio" name="cau1" id="" value="4"> Tất cả các loại trên <br> <br>
+                                  <label for="cau1">Câu 2: JavaScript có các biến ?</label> <br>
+                                  <input type="radio" name="cau2" id="" value="1"> Numbber, Integer, Char <br>
+                                  <input type="radio" name="cau2" id="" value="2"> Number, String, Boolean <br>
+                                  <input type="radio" name="cau2" id="" value="3"> Tất cả các loại trên <br>
+                                  <input type="radio" name="cau2" id="" value="4"> Number, String, Boolean, Null <br> <br>
+                              </form>
+                          </div>
+  
+                          <!-- Modal footer -->
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" form="myform" class="btn btn-primary" data-bs-dismiss="modal">Nộp bài</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </tbody>
+      </table>
+      
+  </div>
+  <div class="tab-pane container fade" id="chinhsua">
+      <div class="row">
+          <div class="col-lg-6 p-5">
+              <img src="assets/img/thaydoisinhvien.jpg" width="100%" height="500px" alt="">
+          </div>
+          <div class="col-lg-6 text-center mt-5 ps-5 pe-5">
+              <h3 class="mt-1"><strong>CẬP NHẬT THÔNG TIN</strong></h3>
+              <form #frm="ngForm" (submit)="updateUser($event,User.id)">
+                  <div class="form-group mb-3">
+                      <input type="number"  [(ngModel)]="User.id"  autocomplete="off" id="mssv" class="form-control" name="mssv" placeholder="Mã số sinh viên" disabled>
+                  </div>
+                  <div class="form-group mb-3">
+                      <input type="text"  [(ngModel)]="User.name" autocomplete="off" class="form-control" name="hoten" placeholder="Họ tên" >
+                  </div>
+                  <select name="lop" [(ngModel)]="User.classroom" class="custom-select mb-3" disabled>
+                      <option selected value="CD20CT12">CD20CT12</option>
+                      <option value="CD20CT13">CD20CT13</option>
+                  </select>
+                  <select name="phai" [(ngModel)]="User.gender" class="custom-select mb-3" disabled>
+                      <option selected value="Nam">Nam</option>
+                      <option value="Nữ">Nữ</option>
+                  </select>
+                  <div class="form-group mb-3">
+                      <input type="text" autocomplete="off"  [(ngModel)]="User.birth" class="form-control" name="ngaysinh" placeholder="Ngày sinh VD: 2022-01-30">
+                  </div>
+                  <div class="form-group mb-3">
+                      <input type="text" autocomplete="off" [(ngModel)]="User.address" class="form-control" name="diachi" placeholder="Địa chỉ"  >
+                  </div>
+                  <div class="form-group mb-3">
+                      <input type="number" autocomplete="off" [(ngModel)]="User.phone" class="form-control" name="sdt" placeholder="Số điện thoại">
+                  </div>
+                  <div class="form-group mb-3">
+                      <input type="email" autocomplete="off" [(ngModel)]="User.email" class="form-control" name="email" placeholder="Email">
+                  </div>
+                  <button type="submit" class="btn text-light w-75 btn-primary">Cập nhật</button>
+              </form>                
+          </div>
+      </div>
+  </div>
+</div>

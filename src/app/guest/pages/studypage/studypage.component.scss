@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,600&family=Oswald:wght@400;500&family=Roboto+Condensed:wght@700&display=swap');
+.container-fluid{
+  font-family: 'Oswald', sans-serif;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    font-size: 14px;
+    font-weight: 500
+  }
+::selection{
+    background-color: #f05123;
+    color: #fff;
+}
+a{
+    color: #333;
+}
+/*css scrollbar*/
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+    
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {       
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+/*---------- */
+.carousel-item{
+    border-radius: 10px;
+    height: 270px;
+}
+.carousel-control-prev-icon {
+    background-color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+    position: relative;
+    left: -100px;
+    box-shadow: -2px 0px 6px rgb(0, 0, 0,16%);
+    color: #4b4b4b;
+    background-image: unset;
+    padding-top: 6px;
+    justify-content: center;
+}
+.carousel-control-next-icon {
+    background-color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+    position: relative;
+    right: -100px;
+    box-shadow: 2px 0px 6px rgb(0, 0, 0,16%);
+    color: #4b4b4b;
+    background-image: unset;
+    padding-top: 6px;
+    justify-content: center;
+}
+
+
+
+
+.menu{
+    list-style: none;
+    padding: 0 6px;
+    
+}
+.menu li{
+    margin-bottom: 10px;
+    display: list-item;
+    text-align: -webkit-match-parent;
+    border-radius: 16px;
+}
+.menu li:hover{
+    background-color: #e8ebed8f;
+}
+.menu li a{
+    width: 72px;
+    height: 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #404040;
+    
+    
+}
+.menu li a span{
+    font-size: 13px;
+    margin-top: 4px;
+    font-weight: 550;
+}
+.khoahoc:hover{
+    cursor: pointer;
+}
+.khoahoc-title{
+    font-weight: bold;
+    font-size: 2rem;
+}
+.card{
+    border: unset;
+}
+/*CSS trang chi tiết khóa chưa học*/
+.list-khoahoc{
+    list-style: none;
+    line-height: 30px;
+    padding-left: 0;
+
+}
+
+
+/*css trang sinhvien*/
+.khungchuakhoahoc{
+    width: 100%;
+    display: inline-flex;
+    overflow-x: scroll;
+}
+
+.khungchuakhoahoc::-webkit-scrollbar {
+    height: 8px;
+
+  }
+  /* Track */
+  .khungchuakhoahoc::-webkit-scrollbar-track {       
+    background: #fff; 
+
+  }
+   
+  /* Handle */
+  .khungchuakhoahoc::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  .khungchuakhoahoc::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+  #chatapp{
+    transition:bottom linear 0s,right linear 0s,width linear 0.3s, height linear 0.3s;
+  }
+  #noidung-hienthi{
+    width: 100%;
+    height: 100%;
+    float: left;
+    padding-top: 10px;
+    /* overflow-y: scroll; */
+}
+.tn-nguoigui{
+    min-height: 40px;
+    background-color: #ebe5e7f8;
+    padding: 10px 30px;
+    float: left;
+    margin-right: 10px;
+    border-radius: 10px;
+    max-width: 75%;
+}
+.tn-nguoitraloi{
+    height: 40px;
+    background-color: #287BFF;
+    padding: 10px 30px;
+    float: right;
+    margin-left: 10px;
+    border-radius: 10px;
+    color: black;
+    max-width: 75%;
+
+}

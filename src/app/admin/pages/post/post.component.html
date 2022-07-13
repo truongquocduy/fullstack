@@ -1,0 +1,33 @@
+<div class="row justify-content-center" style="margin-top: 80px;">
+    <div class="card-list col-lg-6 p-4">
+        <i class="fa-solid fa-graduation-cap" style="width: 30%;float: right;font-size: 60px;color:#a8b0b6"></i>
+        <h2 style="color:#287BFF;width: 70%;"><strong> {{listBlog.length}}</strong></h2>
+        <h6 style="color:#a8b0b6;font-size: 14px;width: 70%;">Blogs</h6>
+    </div>
+    <div class="card-list col-lg-3 p-4" [routerLink]="'/admin/newpost'">
+        <i class="fa-solid fa-address-book" style="width: 30%;float: right;font-size: 60px;color:#a8b0b6"></i>
+        <h2 style="color:#287BFF;"><strong>New</strong></h2>
+        <h6 style="color:#a8b0b6;font-size: 14px;">New Blog</h6>
+    </div>
+</div>
+<div class="row justify-content-center ps-4 pe-4 pb-5" style="margin-top: 20px;">
+    <div *ngFor="let item of listBlog" class="col-lg-12 bg-primary p-3 mt-2">
+        <div class="row">
+            <div class="col-lg-4">
+                <img [src]="'assets/img/' + item.hinhanh" style="width: 100%;border-radius: 10px;" alt="">
+            </div>
+            <div class="col-lg-5 text-light">
+                <h5>{{ item.tieude }}</h5>
+                <p>{{ item.noidungngan }}</p>
+                <code class="text-light">Author <i>{{ item.massv }}</i></code> <br>
+                <code class="text-light">Date <i>{{ item.ngaydang }}</i></code>
+            </div>
+            <div class="col-lg-3">
+                <button class="btn btn-warning w-75 pt-3 pb-3 mt-4" ><a [routerLink]="'/guest/blogpage/' + item.id" class="text-light">XEM BÀI VIẾT</a></button>
+                <button class="btn btn-outline-light w-75 pt-3 pb-3 mt-2" ><a class="text-light">CHỈNH SỬA</a></button>
+                <button class="btn btn-danger w-75 pt-3 pb-3 mt-2" (click)="deletePost(item.id)"><a class="text-light">XÓA</a></button>
+            </div>
+        </div>
+    </div>
+    
+</div>

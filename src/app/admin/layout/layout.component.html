@@ -1,0 +1,108 @@
+<div class="container-fluid">
+    <div class="row">
+        <div id="menu-content">
+            <ul class="pb-4">
+                <li>
+                    <a class="text-light">
+                        <span class="icon">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </span>
+                        <span class="title ">School Administrator</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="list-menu pt-3">
+                <li routerLinkActive="hovered" [routerLink]="'dashboard'">
+                    <a  class="text-light">
+                        <span class="icon">
+                            <i class="fa-solid fa-house-chimney"></i>
+                        </span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li routerLinkActive="hovered"  [routerLink]="'student'">
+                    <a class="text-light">
+                        <span class="icon">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </span>
+                        <span class="title">Students</span>
+                    </a>
+                </li>
+                <li routerLinkActive="hovered" [routerLink]="'post'">
+                    <a class="text-light">
+                        <span class="icon">
+                            <i class="fa-solid fa-message"></i>
+                        </span>
+                        <span class="title">Posts</span>
+                    </a>
+                </li>
+                <li routerLinkActive="hovered">
+                    <a class="text-light">
+                        <span class="icon">
+                            <i class="fa-solid fa-message"></i>
+                        </span>
+                        <span class="title">Message</span>
+                    </a>
+                </li>
+                <li routerLinkActive="hovered" [routerLink]="'exam'">
+                    <a class="text-light">
+                        <span class="icon">
+                            <i class="fa-solid fa-circle-question"></i>
+                        </span>
+                        <span class="title">Exam</span>
+                    </a>
+                </li>
+                <li routerLinkActive="hovered">
+                    <a class="text-light">
+                        <span class="icon">
+                            <i class="fa-solid fa-gear"></i>
+                        </span>
+                        <span class="title">Settings</span>
+                    </a>
+                </li>
+                <li routerLinkActive="hovered">
+                    <a class="text-light">
+                        <span class="icon">
+                            <i class="fa-solid fa-lock"></i>
+                        </span>
+                        <span class="title">Password</span>
+                    </a>
+                </li>
+                <li routerLinkActive="hovered" (click)="logout()">
+                    <a class="text-light">
+                        <span class="icon">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        </span>
+                        <span class="title">Log Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="body-content">
+            <div class="nav row ps-2 bg-light"
+                style="position: fixed;width: 81%;z-index: 3;box-shadow: 0 0 5px 0px gray;">
+                <div class="col-lg-3">
+                    <div class="form-check form-switch" style="font-size: 24px;">
+                        <input onchange="menuStatus()" class="form-check-input" type="checkbox" id="myMenu"
+                            name="menu" value="yes" checked>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-2">
+                    <form action="#" class="w-100 text-center">
+                        <input type="text" class="pt-1 pe-1 ps-3"
+                            style="border: 1px solid #dce0e3;border-radius: 20px;width: 50%"
+                            placeholder="Tìm kiếm khóa học, bài viết, video, ...">
+                    </form>
+                </div>
+                <div class="col-lg-3 p-1">
+                    <div class="form-check form-switch float-end" style="font-size: 26px;">
+                        <img [src]="'assets/img/nam.png'" width="40px" alt="">
+                    </div>
+                </div>
+            </div>
+            <router-outlet></router-outlet>
+            
+        </div>
+    </div>
+</div>
+

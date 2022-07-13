@@ -1,0 +1,180 @@
+<div class="row justify-content-center" style="margin-top: 80px;">
+    <div class="card-list col-lg-3 p-4">
+        <i class="fa-solid fa-eye" style="width: 30%;float: right;font-size: 60px;color:#a8b0b6"></i>
+        <h2 style="color:#287BFF;width: 70%;"><strong>1,504</strong></h2>
+        <h6 style="color:#a8b0b6;font-size: 14px;width: 70%;">Daily Views</h6>
+    </div>
+    <div class="card-list col-lg-3 p-4" (click)="UpdateDiemso()" style="border-radius: 14px;width: 22%;margin-right: 1%;box-shadow: 0px 0px 14px 0px gray;">
+        <i class="fa-solid fa-cart-shopping" style="width: 30%;float: right;font-size: 60px;color:#a8b0b6"></i>
+        <h2 style="color:#287BFF;"><strong>Student</strong></h2>
+        <h6 style="color:#a8b0b6;font-size: 14px;">Update Point</h6>
+    </div>
+    <div class="card-list col-lg-3 p-4"
+        style="border-radius: 14px;width: 22%;margin-right: 1%;box-shadow: 0px 0px 14px 0px gray;">
+        <i class="fa-solid fa-comments" style="width: 30%;float: right;font-size: 60px;color:#a8b0b6"></i>
+        <h2 style="color:#287BFF;"><strong>284</strong></h2>
+        <h6 style="color:#a8b0b6;font-size: 14px;">Comments</h6>
+    </div>
+    <div class="card-list col-lg-3 p-4"
+        style="border-radius: 14px;width: 22%;box-shadow: 0px 0px 14px 0px gray;">
+        <i class="fa-solid fa-money-bill-wave" style="width: 30%;float: right;font-size: 60px;color:#a8b0b6"></i>
+        <h2 style="color:#287BFF;"><strong>$7,842</strong></h2>
+        <h6 style="color:#a8b0b6;font-size: 14px;">Earning</h6>
+    </div>
+
+</div>
+<div *ngIf="loader" id="loader-progress" style="position: fixed;left: 50%;top: 40%;z-index: 10;">
+    <div class="loader mx-auto" style="background-image: url(assets/img/logo.jfif);background-size: 100%;"></div>
+</div>
+<div class="row mt-5 justify-content-center">
+    <div class="col-lg-4 p-4" style="border-radius: 14px;box-shadow: 0px 0px 14px 0px gray;margin-right: 10px;">
+        <canvas mdbChart
+        [chartType]="ChartLeft.chartType"
+        [datasets]="ChartLeft.chartDatasets"
+        [labels]="ChartLeft.chartLabels"
+        [colors]="ChartLeft.chartColors"
+        [options]="ChartLeft.chartOptions"
+        [legend]="true">
+      </canvas>
+    </div>
+    <div class="col-lg-7 p-4" style="border-radius: 14px;box-shadow: 0px 0px 14px 0px gray;">
+        <canvas mdbChart
+        [chartType]="ChartRight.chartType"
+        [datasets]="ChartRight.chartDatasets"
+        [labels]="ChartRight.chartLabels"
+        [colors]="ChartRight.chartColors"
+        [options]="ChartRight.chartOptions"
+        [legend]="true">
+      </canvas>
+    </div>
+</div>
+<div class="row mt-5">
+    <div class="col-lg-12 p-4">
+        <h6 style="color: #287BFF;"><strong>Top Posts</strong></h6>
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <th>Hình ảnh</th>
+                    <th>Tên bài viết</th>
+                    <th>Comment</th>
+                    <th>Số lượt xem</th>
+                    <th>Tác giả</th>
+                    <th>Ngày đăng</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let item of listBlog;let index = index">
+                    <td>
+                        <img [src]="'assets/img/'+ item.hinhanh" style="width: 80px;">
+                    </td>
+                    <td>{{item.tieude}}</td>
+                    <td>32</td>
+                    <td>1200</td>
+                    <td>{{item.massv}}</td>
+                    <td>{{item.ngaydang}}</td>
+                    <td><button type="button" class="btn btn-success" [routerLink]="'/guest/blogpage/' + (index+1)">Xem</button></td>
+                    <td><button type="button" class="btn btn-danger" onclick="xoasp(0);">Xóa</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row mt-5">
+    <div class="col-lg-9 p-4">
+        <h6 style="color: #287BFF;"><strong>Students List</strong></h6>
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <th>Hình ảnh</th>
+                    <th>MSSV</th>
+                    <th>Họ và Tên</th>
+                    <th>Lớp</th>
+                    <th>Giới Tính</th>
+                    <th>Ngày Sinh</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let item of listUser">
+                    <td> 
+                        <img [src]="'assets/img/' + item.image" style="width: 40px;">
+                    </td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.classroom}}</td>
+                    <td>{{item.gender}}</td>
+                    <td>{{item.birth}}</td>
+                    <td><button type="button" class="btn btn-success">Xem</button></td>
+                    <td><button type="button" class="btn btn-danger" onclick="xoasp(0);">Xóa</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-3 p-4">
+        <h6 style="color: #287BFF;"><strong>Top 3 Students</strong></h6>
+            <table class="table-borderless">
+                <tr style="background-color: rgba(255, 99, 132, 1);" class="text-light">
+                    <td style="width: 10%;vertical-align: middle;border-radius: 10px 0 0 10px;"><img [src]="'assets/img/rank1.png'" width="50px" alt=""></td>
+                    <td style="vertical-align: middle;"><h6><strong>Trương Quốc Duy</strong></h6></td>
+                </tr>
+                <tr style="background-color: rgba(255, 206, 86, 1);" class="text-light">
+                    <td style="width: 10%;vertical-align: middle;border-radius: 10px 0 0 10px;"><img [src]="'assets/img/rank2.png'" width="50px" alt=""></td>
+                    <td style="vertical-align: middle;"><h6><strong>Phan Thế Bảo</strong></h6></td>
+                </tr>
+                <tr style="background-color: rgba(54, 162, 235, 1);" class="text-light">    
+                    <td style="width: 10%;vertical-align: middle;border-radius: 10px 0 0 10px;"><img [src]="'assets/img/rank3.png'" width="50px" alt=""></td>
+                    <td style="vertical-align: middle;"><h6><strong>Từ Phước Trung</strong></h6></td>
+                </tr>
+                
+            </table>
+
+    </div>
+</div>
+<div class="row mt-5">
+    <div class="col-lg-9 p-4">
+        <h6 style="color: #287BFF;"><strong>Lesson List</strong></h6>
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <th>Hình ảnh</th>
+                    <th>Tiêu đề</th>
+                    <th>Nội dung</th>
+                    <th>Học Phí</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let item of listCourse">
+                    <td>
+                        <img [src]="'assets/img/' + item.image" style="width: 80px;">
+                    </td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.task}}</td>
+                    <td>{{item.price|currency:'':'':'.0-2'}} VND</td>
+                    <td><button type="button" class="btn btn-success">Xem</button></td>
+                    <td><button type="button" class="btn btn-danger" onclick="xoasp(0);">Xóa</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-3 p-4">
+        <h6 style="color: #287BFF;"><strong>Top 3 Lesson</strong></h6>
+            <table class="table-borderless">
+                <tr style="background-color: rgba(255, 99, 132, 1);" class="text-light">
+                    <td style="width: 10%;vertical-align: middle;border-radius: 10px 0 0 10px;"><img [src]="'assets/img/rank1.png'" width="50px" alt=""></td>
+                    <td style="vertical-align: middle;"><h6><strong>HTML, CSS từ Zero đến Hero</strong></h6></td>
+                </tr>
+                <tr style="background-color: rgba(255, 206, 86, 1);" class="text-light">
+                    <td style="width: 10%;vertical-align: middle;border-radius: 10px 0 0 10px;"><img [src]="'assets/img/rank2.png'" width="50px" alt=""></td>
+                    <td style="vertical-align: middle;"><h6><strong>Học JavaScript Cơ bản</strong></h6></td>
+                </tr>
+                <tr style="background-color: rgba(54, 162, 235, 1);" class="text-light">    
+                    <td style="width: 10%;vertical-align: middle;border-radius: 10px 0 0 10px;"><img [src]="'assets/img/rank3.png'" width="50px" alt=""></td>
+                    <td style="vertical-align: middle;"><h6><strong>Khóa học responsive</strong></h6></td>
+                </tr>
+                
+            </table>
+
+    </div>
+</div>

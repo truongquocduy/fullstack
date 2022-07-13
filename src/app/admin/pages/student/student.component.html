@@ -1,0 +1,237 @@
+
+    <div class="row justify-content-center" style="margin-top: 80px;">
+        <div class="card-list col-lg-6 p-4">
+            <i class="fa-solid fa-graduation-cap" style="width: 30%;float: right;font-size: 60px;color:#a8b0b6"></i>
+            <h2 style="color:#287BFF;width: 70%;"><strong>{{ listUser.length }}</strong></h2>
+            <h6 style="color:#a8b0b6;font-size: 14px;width: 70%;">Students</h6>
+        </div>
+        <div class="card-list col-lg-3 p-4" data-bs-toggle="offcanvas" data-bs-target="#new">
+            <i class="fa-solid fa-address-book" style="width: 30%;float: right;font-size: 60px;color:#a8b0b6"></i>
+            <h2 style="color:#287BFF;"><strong>New</strong></h2>
+            <h6 style="color:#a8b0b6;font-size: 14px;">New Student</h6>
+        </div>
+
+    </div>
+    <div class="row mt-5">
+        <div class="col-lg-12 p-4">
+            <h6 style="color: #287BFF;"><strong>Students List</strong></h6>
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <th>Hình ảnh</th>
+                        <th>MSSV</th>
+                        <th>Họ và Tên</th>
+                        <th>Lớp</th>
+                        <th>Giới Tính</th>
+                        <th>Ngày Sinh</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr *ngFor="let item of listUser">
+                        <td>
+                            <img [src]="'assets/img/' + item.image" style="width: 40px;">
+                        </td>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.classroom }}</td>
+                        <td>{{ item.gender }}</td>
+                        <td>{{ item.birth }}</td>
+                        <td><button type="button" class="btn btn-success" data-bs-toggle="offcanvas" data-bs-target="#thongtinsv" (click)="loadUserID(item.id)">Xem</button></td>
+                        <td><button type="button" class="btn btn-danger" (click)="deleteAccount(item.id)">Xóa</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="offcanvas offcanvas-end" id="new" style="width: 70%;">
+        <div class="offcanvas-body">
+            <div class="row m-5" style="box-shadow: 0px 10px 20px 0px black;">
+                <div class="col-lg-6 p-5">
+                    <img [src]="'assets/img/taotaikhoan.jpg'" width="80%" alt="">
+                </div>
+                <div class="col-lg-6 text-center mt-5 pl-5 pr-5">
+                    <h3 class="mt-4"><strong>TẠO TÀI KHOẢN</strong></h3>
+
+                    <form (submit)="createAccount()">
+                        <div class="input-group mb-3">
+                            <input type="text" autocomplete="off" id="mssv" [(ngModel)]="mssv" class="form-control bg-light" name="mssv"
+                                placeholder="Mã số sinh viên">
+                            <button type="button" class="input-group-text" onclick="randomID();"><i
+                                    class="far fa-lightbulb"></i></button>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="text" autocomplete="off" [(ngModel)]="name" class="form-control" name="hoten"
+                                placeholder="Họ tên">
+                        </div>
+                        <select name="lop" class="form-select mb-3" [(ngModel)]="classroom">
+                            <option selected value="CD20CT12">CD20CT12</option>
+                            <option value="CD20CT13">CD20CT13</option>
+                        </select>
+                        <select name="phai" class="form-select mb-3" [(ngModel)]="gender">
+                            <option selected value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select>
+                        <div class="form-group mb-3">
+                            <input type="text" autocomplete="off" [(ngModel)]="birth" class="form-control" name="ngaysinh"
+                                placeholder="Ngày sinh VD: 2022-01-30">
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="text" autocomplete="off" [(ngModel)]="address" class="form-control" name="diachi"
+                                placeholder="Địa chỉ">
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="text" autocomplete="off" [(ngModel)]="phone" class="form-control" name="sdt"
+                                placeholder="Số điện thoại">
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="email" autocomplete="off" [(ngModel)]="email" class="form-control" name="email"
+                                placeholder="Email">
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="text" [(ngModel)]="password"  autocomplete="off" class="form-control" name="pass"
+                                placeholder="Mật khẩu">
+                        </div>
+                        <button type="submit" class="btn text-light w-75 btn-primary mb-5">Tạo tài khoản</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas offcanvas-end" id="thongtinsv" style="width:1000px">
+        <div class="offcanvas-header" style="padding-bottom:0">
+          <h2 class="offcanvas-title">Thông tin sinh viên</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+          <!-- Nav tabs -->
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" data-bs-toggle="tab" href="#lilich">Sơ yếu lý lịch</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="#diemso">Điểm số</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="#chinhsua">Thay đổi</a>
+        </li>
+      </ul>
+      
+      <!-- Tab panes -->
+      <div class="tab-content">
+          <div class="tab-pane container active" id="lilich" style="background-color:#eae8e9;">
+              <div class="row pt-4">
+                  <div class="col-lg-3 text-center pl-4">
+                      
+                      <img [src]="'assets/img/nam.png'" width="80%" alt="" style="border: 6px solid #00c0f3;border-radius:100%;">
+                      <h6 class="mt-4 text-left" style="color:#00c0f3;"><strong>VỀ BẢN THÂN</strong></h6> 
+                      <p class="text-left" style="font-size:14px">
+                          Cử nhân công nghệ thông tin, với kinh nghiệm xây dựng phần mềm, website, đa nền tảng, photoshop . . .
+                      </p>  
+                      <h6 class="mt-5 text-left" style="color:#00c0f3;"><strong>THÔNG TIN LIÊN HỆ</strong></h6> 
+                      <ul class="text-left" style="list-style:none;padding:0;font-size:14px">
+                          <li>SỐ ĐIỆN THOẠI</li>
+                          <li>(+84) {{UserTarget.phone}}</li> <br>
+                          <li>QUÊ QUÁN</li>
+                          <li>{{UserTarget.address}}</li><br>
+                          <li>ĐỊA ĐIỂM  LÀM VIỆC</li>
+                          <li>TP.Hồ Chí Minh</li><br>
+                          <li>EMAIL</li>
+                          <li>{{UserTarget.email}}</li>
+                      </ul>       
+                  </div>
+              <div class="col-lg-9" style="background-color:white;border-radius:80px 0 0 0;padding:70px 30px 0px 50px">
+                  <strong style="font-size:40px">{{UserTarget.name}}</strong>
+                  <h5>CÔNG NGHỆ THÔNG TIN</h5>
+                  <h6 class="mt-4 text-left" style="color:#00c0f3;"><strong>HỌC VẤN</strong></h6> 
+                  <hr>
+                  <ul class="text-left" style="list-style:none;padding:0;font-size:14px">
+                      <li><strong>Trường cao đẳng CNTT TP.HCM</strong></li>
+                      <li>2020 - 2023</li>
+                      <li>Điểm trung bình: 8.0/10</li><br>
+                      <li>Thành tích học tập nổi bật</li>
+                      <ul>
+                          <li>3 kỳ cuối cùng đạt học lực giỏi</li>
+                          <li>Nhận được học bổng toàn phần của tổ chức Tiếng Anh</li>
+                      </ul>
+                  </ul> 
+                  <h6 class="mt-4 text-left" style="color:#00c0f3;"><strong>HOẠT ĐỘNG NGOẠI KHÓA</strong></h6> 
+                  <hr>
+                  <ul class="text-left" style="list-style:none;padding:0;font-size:14px">
+                      <li><strong>CLB nhà lập trình viên tương lai</strong></li>
+                      <li>2020 - hiện tại</li>
+                      <ul>
+                          <li>Danh hiệu sinh viên tích cực</li>
+                          <li>Thường xuyên đảm nhiệm vị trí trưởng nhóm trong các hoạt động của CLB nhà lập trình viên tương lai do nhà Trường tổ chức</li>
+                          <li>Là đối mối liên lạc, kết nối các hội viên và các doanh nghiệp</li>
+                      </ul>
+                  </ul> 
+              </div>
+          </div>
+      </div>
+      <div class="tab-pane container fade" id="diemso">
+          <table class="table table-bordered mt-4">
+              <thead>
+                  <tr>
+                      <th>STT</th>
+                      <th>Tên học phần</th>
+                      <th>Thi1</th>
+                      <th>Thi2</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let item of listStudyingTarget;let index = index">
+                      <td>{{index+1}}</td>
+                      <td>{{item.name}}</td>
+                      <td> {{item.thi1}}</td>
+                      <td> {{item.thi2}}</td>
+                  </tr>
+              </tbody>
+          </table>
+          
+      
+      </div>
+      <div class="tab-pane container fade" id="chinhsua">
+          <div class="row">
+              <div class="col-lg-6 p-5">
+                  <img src="assets/img/thaydoisinhvien.jpg" width="100%" height="500px" alt="">
+              </div>
+              <div class="col-lg-6 text-center mt-5 ps-5 pe-5">
+                  <h3 class="mt-1"><strong>CẬP NHẬT THÔNG TIN</strong></h3>
+                  <form #frm="ngForm" (submit)="updateUser($event,UserTarget.id)">
+                      <div class="form-group mb-3">
+                          <input type="number" [ngModel]="UserTarget.id"  autocomplete="off" id="mssv" class="form-control" name="mssv" placeholder="Mã số sinh viên" disabled>
+                      </div>
+                      <div class="form-group mb-3">
+                          <input type="text" [ngModel]="UserTarget.name" autocomplete="off" class="form-control" name="hoten" placeholder="Họ tên" >
+                      </div>
+                      <select name="lop" class="custom-select mb-3" [ngModel]="UserTarget.classroom">
+                          <option selected value="CD20CT12">CD20CT12</option>
+                          <option value="CD20CT13">CD20CT13</option>
+                      </select>
+                      <select name="phai" class="custom-select mb-3" [ngModel]="UserTarget.gender">
+                          <option selected value="Nam">Nam</option>
+                          <option value="Nữ">Nữ</option>
+                      </select>
+                      <div class="form-group mb-3">
+                          <input type="text" autocomplete="off"  [(ngModel)]="UserTarget.birth" class="form-control" name="ngaysinh" placeholder="Ngày sinh VD: 2022-01-30">
+                      </div>
+                      <div class="form-group mb-3">
+                          <input type="text" autocomplete="off" [(ngModel)]="UserTarget.address" class="form-control" name="diachi" placeholder="Địa chỉ"  >
+                      </div>
+                      <div class="form-group mb-3">
+                          <input type="number" autocomplete="off" [(ngModel)]="UserTarget.phone" class="form-control" name="sdt" placeholder="Số điện thoại">
+                      </div>
+                      <div class="form-group mb-3">
+                          <input type="email" autocomplete="off" [(ngModel)]="UserTarget.email" class="form-control" name="email" placeholder="Email">
+                      </div>
+                      <span class="mb-2" [class]="{'text-danger':!isChangePassword,'text-primary':isChangePassword}" style="float: left;font-size: 14px;cursor: pointer;" (click)="clickChangePassword()">Change Password</span>
+                      <div class="form-group mb-3">
+                        <input type="text" autocomplete="off" [(ngModel)]="newpassword" class="form-control" name="password" placeholder="Password" *ngIf="isChangePassword">
+                        </div>
+                      <button type="submit" class="btn text-light w-75 btn-primary">Cập nhật</button>
+                  </form>                
+              </div>
+          </div>
+      </div>
+    </div>

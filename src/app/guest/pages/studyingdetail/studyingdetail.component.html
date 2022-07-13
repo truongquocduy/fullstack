@@ -1,0 +1,93 @@
+<div class="col-lg-10 " style="position: relative;left: 140px;">
+    <div class="row">
+        <div class="col-lg-9 me-5 pe-5 pb-5 mt-3" style="border-right: 1px solid #ece5e5;">
+            <div class="row">
+                <div class="col-lg-12 ps-4">
+                    <h2 class="khoahoc-title">{{lishcoursedetail.name}}</h2>
+                </div>
+                <div class="col-lg-12 mt-2 ms-2" style="color: #888484;">
+                    {{lishcoursedetail.task}}
+                </div>
+                <div class="col-lg-12 ps-4 mt-3">
+                    <h5 style="font-weight: bold;">Bạn sẽ được học gì</h5>
+                </div>
+                <div class="col-lg-6 ps-4 mt-3">
+                    <ul class="list-khoahoc" style="list-style: none;">
+                        <li><i class="fas fa-check" style="color: #f05123;"></i> Biết cách xây dựng giao diện web với HTML, CSS</li>
+                        <li><i class="fas fa-check" style="color: #f05123;"></i> Biết cách đặt tên class CSS theo chuẩn BEM</li>
+                        <li><i class="fas fa-check" style="color: #f05123;"></i> Làm chủ Flexbox khi dựng bố cục website</li>
+                        <li><i class="fas fa-check" style="color: #f05123;"></i> Biết cách tự tạo động lực cho bản thân</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 ps-4 mt-3">
+                    <ul class="list-khoahoc" style="list-style: none;">
+                        <li><i class="fas fa-check" style="color: #f05123;"></i> Biết cách phân tích giao diện website</li>
+                        <li><i class="fas fa-check" style="color: #f05123;"></i> Biết cách làm giao diện web responsive</li>
+                        <li><i class="fas fa-check" style="color: #f05123;"></i> Sở hữu 2 giao diện web khi học xong khóa học</li>
+                        <li><i class="fas fa-check" style="color: #f05123;"></i> Biết cách tự học những kiến thức mới</li>
+                    </ul>
+                </div>
+
+
+                <div class="col-lg-12 pl-4 mt-2">
+                    <h5 style="font-weight: bold;">Nội dung khóa học</h5>
+                </div>
+                <div class="col-lg-9 mt-2 pl-4" style="color: #888484;">
+                    13 phân . 113 bài học . Thời lượng 27 giờ 21 phút
+                </div>
+                <div class="col-lg-3 mt-2">
+                    <button class="btn" style="color: #f05123;"><strong onclick="showAll()">Mở rộng tất cả</strong></button>
+                </div>
+
+                <div class="col-lg-12 mt-2">
+                    <div id="accordion">
+
+                        <div class="card" *ngFor="let item of tieuderutgon; let indexNumber = index">
+                            <div class="card-header">
+                                <a class="nav-link" data-toggle="collapse" href="#collapseOne">
+                                    <i class="fas fa-play-circle pe-2" style="color: #f05123;"></i>
+                                    <strong> {{indexNumber+1}}. {{item}}</strong>
+                                </a>
+                            </div>
+                            <!-- <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                                <div class="card-body pt-0 pb-0">
+                                    <div class="row" >
+                                        <div  class="col-lg-10 p-3"><i class="fas fa-play-circle" style="color: #f05123;"></i> 1. Làm được gì sau khóa học?</div>
+                                        <div class="col-lg-2 p-3">03:15</div>
+                                    </div>
+                                   
+                                </div>
+                            </div> -->
+                            
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-12 pl-4 mt-5">
+                    <h5 style="font-weight: bold;">Yều cầu</h5>
+                </div>
+                <div class="col-lg-12 pl-4 mt-3">
+                    <ul class="list-khoahoc" style="list-style: none;">
+                        <li><i class="fas fa-check" style="color: #f05123;"></i> Máy vi tính kết nối internet (Windows, Ubuntu hoặc MacOS)</li>
+                        <li><i class="fas fa-check" style="color: #f05123;"></i> Ý thức tự học cao, trách nhiệm cao, kiên trì bền bỉ không ngại cái khó</li>
+                        <li><i class="fas fa-check" style="color: #f05123;"></i> Không được nóng vội, bình tĩnh học, làm bài tập sau mỗi bài học</li>
+                        <li><i class="fas fa-check" style="color: #f05123;"></i> Khi học nếu có khúc mắc hãy tham gia hỏi/đáp tại group FB: Học lập trình web (fullstack.edu.vn)</li>
+                        <li><i class="fas fa-check" style="color: #f05123;"></i> Bạn không cần biết gì hơn nữa, trong khóa học tôi sẽ chỉ cho bạn những gì bạn cần phải biết</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-2 pt-4" style="position: fixed;right: 100px;">
+            <img [src]="'assets/img/'+lishcoursedetail.image" width="100%" alt="">
+            <h5 class="text-center mt-4" style="color: #f05123;">Học Phí: <strong>{{lishcoursedetail.price |currency:'':'':'.0-2'}} đ</strong></h5>
+            <button (click)="addcart(lishcoursedetail)" class="btn text-light mx-auto d-block mt-3" style="background-color: #f05123;border-radius: 10px;font-size: 20px;">ĐĂNG KÝ HỌC</button>
+            <ul class="list-khoahoc pl-3 mt-3" style="font-size: 14px;">
+                <li><i class="fas fa-tachometer-alt"></i> Trình độ cơ bản</li>
+                <li><i class="fas fa-film"></i> Tổng số <strong>113</strong> bài học</li>
+                <li><i class="far fa-clock"></i> Thời lượng <strong>27 giờ 21 phút</strong></li>
+                <li><i class="fas fa-battery-full"></i> Học mọi lúc, mọi nơi</li>
+            </ul>
+        </div>
+    </div>
+</div>
